@@ -1,2 +1,2 @@
 # MusicPrj
-Music player by Web.
+Music player for Web.
