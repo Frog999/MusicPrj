@@ -1,0 +1,74 @@
+* {
+    margin: 5px auto;
+}
+h1 {
+    margin-left: 100px;
+}
+#search_view {
+    width: 60%;
+    height: 350px;
+    padding: 20px;
+    background-color: blanchedalmond;
+}
+#control {
+    position: fixed;
+    bottom: 50%;
+    left: 1%;
+}
+#control tr{
+    background-color: pink;
+    cursor: pointer;
+}
+td {
+    width: 70px;
+    height: 35px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#search_area{
+    width: 65%;
+    height: 25px;
+    display: block;
+    margin-bottom: 40px;
+}
+#search_bar {
+    width: 90%;
+    height: 100%;
+}
+
+#search_btn {
+    width: 7%;
+    height: 130%;
+}
+
+#main {
+    width: 65%;
+    height: 45px;
+
+}
+#main thead {
+    background-color: bisque;
+    text-align: center;
+    font-weight: bolder;
+    padding: 5px 10px;
+}
+#order {
+    width: 10%;
+}
+#music_title {
+    width: 85%;
+}
+#delete {
+    width: 5%;
+}
+
+#delete_img {
+    height: 100%;
+    width: auto;
+}
+#search_result{
+    text-decoration: none;
+    font-size: 50px;
+}
+
