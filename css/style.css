@@ -63,7 +63,7 @@ td {
     width: 5%;
 }
 
-#delete_img {
+.delete_img {
     height: 100%;
     width: auto;
 }
