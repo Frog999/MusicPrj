@@ -1,4 +1,4 @@
-let player;
+let player = null;
 let playlist_id = [];
 let arrayNum = 0;
 function play() {
@@ -34,28 +34,37 @@ function play() {
     }
     function nextVideo() {
         arrayNum++;
-        playerDestroy();
+        if(player !== null){
+            playerDestroy();
+        }
         play();
     }
     function prevVideo(){
         arrayNum--;
-        playerDestroy();
+        if(player !== null){
+            playerDestroy();
+        }
         play();
     }
-    function clearPlaylist(event) {
+    function clearPlaylist() {
         if(player != null){
             playerDestroy();
         }
         playlist_id = [];
         arrayNum = 0;
         for (let m = 0; m < order_number; m++) {
-            document.getElementById("main").deleteRow(-1);
+            document.querySelector("#main").deleteRow(-1);
         }
         order_number = 0;
     }
     
-    let b = document.querySelectorAll(".delete_img");
-    b.forEach((item, n) => {item.addEventListener('click', () => deleteList(n))});
-    function deleteList() {
-
+    function deleteList(n) {
+        document.querySelector(".main").deleteRow(n+1);
+        // for (let x = n+1; x < order_number-1; x++) {
+        //     innerText = n+1;
+            
+        // }
+        console.log(n)
+        playlist_id[n] = [];
+        order_number--;
     }
