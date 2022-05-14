@@ -46,7 +46,7 @@ function search() {
                         let del_btn_cell = newRow.insertCell(2);
                         order_number++;
                         order_cell.innerText = order_number;
-                        music_title_cell.innerText = jdata.items[i].snippet.title;
+                        $(music_title_cell).append(jdata.items[i].snippet.title);
                         $(del_btn_cell).append('<img src = "delete.png" class = "delete_img" onclick = "deleteList(' + order_number + ')">')
 
                         //플레이리스트 배열에 비디오ID 추가
