@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="js/search.js"></script>
+    <script src="js/play.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <title>노래 재생</title>
+</head>
+
+<body>
+    <div>
+        <h1>노래 재생기</h1>
+        <div id="search_area">
+            <!-- 엔터키 입력 또는 검색 버튼 클릭시 검색 -->
+            <input type="text" id="search_bar" onkeydown="if(event.keyCode==13) javascript: search()">
+            <button type="button" id="search_btn" onclick="search()">검색</button><br>
+        </div>
+
+        <div id="search_view"></div>
+
+        <table id="control">
+            <tr>
+                <td id="play_btn" onclick="play()">재생</td>
+                <td id="reset_btn" onclick="clearPlaylist()">초기화</td>
+            </tr>
+            <tr>
+                <td id="prev_btn" onclick="prevVideo()">이전곡</td>
+                <td id="next_btn" onclick="nextVideo()">다음곡</td>
+
+            </tr>
+
+        </table>
+
+        <table id="main">
+            <thead>
+                <tr>
+                    <th id="order">순서</th>
+                    <th id="music_title">음악 제목</th>
+                    <th id="delete"></th>
+                </tr>
+            </thead>
+        </table>
+        <div id="player_view"></div>
+    </div>
+</body>
+
+</html>
