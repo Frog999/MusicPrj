@@ -28,44 +28,36 @@ function onPlayerStateChange(event) {
     }
 }
 function playerDestroy() {
-    player.stopVideo();
-    player.destroy();
-    player = null;
+    if (player != null) {
+        player.stopVideo();
+        player.destroy();
+        player = null;
+    }
 }
 function nextVideo() {
     arrayNum++;
-    if (player !== null) {
-        playerDestroy();
-    }
+    playerDestroy();
     play();
-    if(arrayNum >= playlist_id.length) arrayNum--;
+    if (arrayNum >= playlist_id.length) arrayNum--;
 }
 function prevVideo() {
     arrayNum--;
-    if (player !== null) {
-        playerDestroy();
-    }
+    playerDestroy();
     play();
-    if(arrayNum < 0) arrayNum++;
+    if (arrayNum < 0) arrayNum++;
 }
 function clearPlaylist() {
-    if (player != null) {
-        playerDestroy();
-    }
+    playerDestroy();
     playlist_id = [];
     arrayNum = 0;
-    // $('#main tr:not(:first)').remove();
-    for (let m = 0; m < order_number; m++) {
-        document.querySelector("#main").deleteRow(-1);
-    }
+    $('#main tr:not(:first)').remove();
     order_number = 0;
 }
 
 function deleteList(i) {
     document.querySelector("#main").deleteRow(i);
-    let h = document.querySelector("#main");
     for (let s = i; s < order_number; s++) {
-        let v = $(h).find("tr:eq(" + (s) + ")");
+        let v = $("#main").find("tr:eq(" + (s) + ")");
         $(v).find("td:eq(0)").text(s);
         // 태그 내 온클릭 속성 변경
         $(v).find(".delete_img").attr("onclick", "deleteList(" + s + ")");
@@ -75,7 +67,7 @@ function deleteList(i) {
     playlist_id = playlist_id.filter((item) => {
         return item != null;
     })
-    if(player !== null && i <= arrayNum){
+    if (player !== null && i <= arrayNum) {
         arrayNum--;
     }
 }
