@@ -16,18 +16,19 @@ const connection = mariadb.createConnection({
 connection.connect();
 
 router.get('/', (req,res) => {
-    let msg
-    let errMsg = req.flash('error')
-    if (errMsg) msg = errMsg
+    // let msg
+    // let errMsg = req.flash('error')
+    // if (errMsg) msg = errMsg
     console.log('index Page loaded')
     res.render('index')
 })
 
 passport.serializeUser((user, done) => {
+    console.log(user.id)
     done(null, user.id);
 })
 
-passport.deserializeUser((user, done) => {
+passport.deserializeUser((id, done) => {
     done(null, id)
 })
 
@@ -37,7 +38,7 @@ passport.use('local-login', new localStrategy({
     passReqToCallback: true
 }, (req, id, password, done) => {
     let sql = {id: id, password: password}
-    let query = connection.query('select * from user where id = ? and password = ?;', [id],[password],
+    let query = connection.query('select * from user where id = ? and password = ?;', [id, password],
     (err, rows) => {
         if (err) return done(err);
         if(rows.length){

@@ -4,6 +4,9 @@ const router = express.Router()
 const path = require('path')
 
 router.get('/',(req,res) => {
-    res.render('main')
+    console.log('main', req.user)
+    if(!req.user) res.redirect('/')
+    else res.render('main')
 })
+
 module.exports = router;

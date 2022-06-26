@@ -8,7 +8,7 @@ function search() {
     const maxResults = "5";
 
     //API키
-    const key = "";
+    const key = "AIzaSyBuQao-t5oB8AMJ1y7K5pvj5CSRUIM-VtE";
 
     //검색 URL
     let targetUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=" + order

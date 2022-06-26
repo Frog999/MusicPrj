@@ -46,10 +46,9 @@
 
         xhr.addEventListener('load', () => {
             let result = JSON.parse(xhr.responseText)
-            console.log(result)
             let resultDiv = document.querySelector('#result')
-            if(result.id) resultDiv.innerHTML = "로그인 성공"
-            else resultDiv.innerHTML = "실패"
+            if(result.id) window.location.href="main"
+            else resultDiv.innerHTML = result
 
         })
     }
