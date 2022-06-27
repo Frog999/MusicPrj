@@ -15,7 +15,10 @@ const connection = mariadb.createConnection({
 connection.connect()
 
 router.get('/', (req,res) => {
-    res.render('signUp')
+    let msg
+    let errMsg = req.flash('error')
+    if (errMsg) msg = errMsg
+    res.render('signUp', {'message': msg})
 })
 
 passport.serializeUser((user,done) => {
@@ -38,7 +41,7 @@ passport.use('local-join', new localStrategy({
             console.log("exist call")
             return done(null, false, {message: '이미 사용중인 ID입니다.'})
         }else {
-            sql = {id: id, password: password}
+            sql = {id: id, password: password, name: req.body.name}
             query = connection.query('insert into acceptqueue set ?', sql, (err,rows) => {              
                 if(err) throw err
                 return done(null, {'id': id, 'password': password})
@@ -48,9 +51,9 @@ passport.use('local-join', new localStrategy({
 }))
 
 router.post('/', passport.authenticate('local-join', {
-    successRedirect: '/'
-    // failureRedirect: '/signup',
-    // failureFlash: true
+    successRedirect: '/',
+    failureRedirect: '/signup',
+    failureFlash: true
 }))
 
 module.exports = router
