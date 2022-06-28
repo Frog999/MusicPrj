@@ -15,9 +15,9 @@ const connection = mariadb.createConnection({
 connection.connect()
 
 router.get('/', (req,res) => {
-    var msg;
-    var errMsg = req.flash('error')
-    if(errMsg) msg = errMsg;
+    let msg;
+    let errMsg = req.flash('error')
+    if (errMsg) msg = errMsg
     res.render('signUp', {'message': msg})
 })
 
