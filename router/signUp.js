@@ -15,7 +15,7 @@ const connection = mariadb.createConnection({
 connection.connect()
 
 router.get('/', (req,res) => {
-    let msg;
+    let msg
     let errMsg = req.flash('error')
     if (errMsg) msg = errMsg
     res.render('signUp', {'message': msg})
@@ -23,7 +23,7 @@ router.get('/', (req,res) => {
 
 passport.serializeUser((user,done) => {
     console.log("ssss")
-    done(null, user.id);
+    done(null, user.id)
 })
 
 passport.deserializeUser((id,done)=> {
