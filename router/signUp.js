@@ -1,15 +1,15 @@
 const express = require('express')
 const app = express()
-const router = express.Router()
 const mariadb = require('mysql')
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
+const router = express.Router()
 
 const connection = mariadb.createConnection({
     host: 'localhost',
-    port: 3306,
+    port: 3309,
     user: 'root',
-    password: 'aa33562759',
+    password: '1234',
     database: 'music'
 })
 connection.connect()
@@ -22,7 +22,8 @@ router.get('/', (req,res) => {
 })
 
 passport.serializeUser((user,done) => {
-    done(null, user.id);
+    console.log("ssss")
+    done(null, user.id)
 })
 
 passport.deserializeUser((id,done)=> {
@@ -38,13 +39,13 @@ passport.use('local-join', new localStrategy({
         if (err) return done(err)
 
         if(rows.length){
-            console.log("exist call")
+            console.log("existed user")
             return done(null, false, {message: '이미 사용중인 ID입니다.'})
         }else {
             sql = {id: id, password: password, name: req.body.name}
             query = connection.query('insert into acceptqueue set ?', sql, (err,rows) => {              
                 if(err) throw err
-                return done(null, {'id': id, 'password': password})
+                return done(null, {'id': id})
             })
         }
     })

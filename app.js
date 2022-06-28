@@ -10,7 +10,6 @@ app.listen(3005, () => {
     console.log("Server is Running...")
 })
 
-
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
