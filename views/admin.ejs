@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/admin.js"></script>
+    <style>
+        table,
+        tr {
+            border: 2px solid black;
+            text-align: center;
+        }
+
+        td {
+            padding: 10px 50px;
+        }
+    </style>
     <title>관리자 페이지</title>
 </head>
+
 <body>
-    관리자 페이지
+    <h2>가입 승인 대기</h2>
+    <table class="table TableBox">
+        <tr>
+            <td scope="col">#</td>
+            <td scope="col">ID</td>
+            <td scope="col">이름</td>
+            <td scope="col">신청일</td>
+            <td scope="col">승인</td>
+            <td scope="col">삭제</td>
+        </tr>
+        <% data.forEach((el,index)=> {%>
+            <tr>
+                <td scope="row">
+                    <%= index + 1%>
+                </td>
+                <td>
+                    <%= el.id %>
+                </td>
+                <td>
+                    <%= el.name %>
+                </td>
+                <td>
+                    <%= el.date %>
+                </td>
+                <td><button type="button" class="accept" value="<%=index +1 %>" onclick="accept(value)">승인</button></td>
+                <td><button type="button" class="delete" value="<%=index +1 %>">삭제</button></td>
+            </tr>
+            <% }) %>
+    </table>
+    
 </body>
+
 </html>

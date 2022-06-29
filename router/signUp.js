@@ -7,9 +7,9 @@ const router = express.Router()
 
 const connection = mariadb.createConnection({
     host: 'localhost',
-    port: 3309,
+    port: 3306,
     user: 'root',
-    password: '1234',
+    password: 'aa33562759',
     database: 'music'
 })
 connection.connect()
