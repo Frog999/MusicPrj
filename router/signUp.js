@@ -21,40 +21,22 @@ router.get('/', (req,res) => {
     res.render('signUp', {'message': msg})
 })
 
-passport.serializeUser((user,done) => {
-    console.log("ssss")
-    done(null, user.id)
-})
-
-passport.deserializeUser((id,done)=> {
-    done(null, id)
-})
-
-passport.use('local-join', new localStrategy({
-    usernameField: 'id',
-    passwordField: 'password',
-    passReqToCallback: true
-}, (req, id, password, done) => {
-    let query = connection.query('select * from user where id = ?', [id], (err, rows) => {
-        if (err) return done(err)
-
+router.post('/', (req,res) => {
+    id = req.body.id
+    password = req.body.password
+    connection.query('select * from acceptqueue where id = ?', [id], (err, rows) => {
+        if (err) console.log(err)
         if(rows.length){
-            console.log("existed user")
-            return done(null, false, {message: '이미 사용중인 ID입니다.'})
+            res.render('signup', {'message': '이미 사용중인 아이디 입니다.'})
         }else {
             sql = {id: id, password: password, name: req.body.name}
             query = connection.query('insert into acceptqueue set ?', sql, (err,rows) => {              
                 if(err) throw err
-                return done(null, {'id': id})
+                else res.redirect('/')
             })
         }
     })
-}))
-
-router.post('/', passport.authenticate('local-join', {
-    successRedirect: '/',
-    failureRedirect: '/signup',
-    failureFlash: true
-}))
+}
+)
 
 module.exports = router

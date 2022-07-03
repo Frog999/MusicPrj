@@ -45,11 +45,12 @@
                 <td>
                     <%= el.date %>
                 </td>
-                <td><button type="button" class="accept" value="<%=index +1 %>" onclick="accept(value)">승인</button></td>
-                <td><button type="button" class="delete" value="<%=index +1 %>">삭제</button></td>
+                <td><button type="button" class="accept" value="<%=el.id%>" onclick="accept(value)">승인</button></td>
+                <td><button type="button" class="delete" value="<%=el.id%>" onclick="reject(value)">삭제</button></td>
             </tr>
             <% }) %>
     </table>
+    <div id="result"></div>
     
 </body>
 

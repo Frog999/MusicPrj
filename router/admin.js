@@ -15,26 +15,46 @@ const connection = mariadb.createConnection({
 connection.connect()
 
 router.get('/', (req,res) => {
-    connection.query("select id, name, date from acceptqueue", (err, result) => {
-        if (err) res.send(err)
-        else res.render('admin', {data: result})
-    })
-    // if(!req.user) res.redirect('/')
-    // else{
-    //     let result = false;
-    //     connection.query("select rank from user where id = ?", [req.user], (err,rows) => {
-    //         if(err) throw err
-    //         if(rows[0].rank == 'admin') result = true
-    //         if(!result) res.redirect('/main')
-    //         else {
-    //             connection.query("select id, name, date from acceptqueue", (err, result) => {
-    //                 if (err) res.send(err)
-    //                 else res.render('admin', {data: result})
-    //             })
-    //         }
-    //     })
-    // }
+    if(!req.user) res.redirect('/')
+    else{
+        let result = false;
+        connection.query("select rank from user where id = ?", [req.user], (err,rows) => {
+            if(err) throw err
+            if(rows[0].rank == 'admin') result = true
+            if(!result) res.redirect('/main')
+            else {
+                connection.query("select id, name, date from acceptqueue", (err, result) => {
+                    if (err) res.send(err)
+                    else res.render('admin', {data: result})
+                })
+            }
+        })
+    }
 })
 
+router.post('/accept', (req, res) => {
+    let id = req.body.id
+    connection.query('insert into user(id, name, password) select id, name, password from acceptqueue where id =?;', id,
+    (err, rows) => {
+        if (err) console.log(err)
+        else {
+            connection.query('delete from acceptqueue where id =?', id,
+            (err, rows) => {
+                if(err) console.log(err)
+                else res.redirect('/admin')
+            })
+            
+        }
+    })
+})
+
+router.post('/reject', (req,res) => {
+    let id = req.body.id
+    connection.query('delete from acceptqueue where id = ? ', id,
+    (err, rows) => {
+        if (err) console.log(err)
+        else res.redirect('/admin')
+    })
+})
 
 module.exports = router
