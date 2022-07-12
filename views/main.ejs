@@ -15,41 +15,37 @@
 </head>
 
 <body>
-    <div>
-        <h1>노래 재생기</h1>
-        <a id= "logout" href="/logout">logout</a>
+    <div id="info">
+        <%=user%>님 접속중. <a id= "logout" href="/logout">로그아웃</a>
+    </div>
+    <div id = "wrap">
+        <h1>니곡 내곡</h1>
         <div id="search_area">
             <!-- 엔터키 입력 또는 검색 버튼 클릭시 검색 -->
             <input type="text" id="search_bar" onkeydown="if(event.keyCode==13) javascript: search()">
-            <button type="button" id="search_btn" onclick="search()">검색</button><br>
+            <img id="search_button" src="img/search_button.png" onclick="search()"><br>
         </div>
 
         <div id="search_view"></div>
-
-        <table id="control">
-            <tr>
-                <td id="play_btn" onclick="play()">재생</td>
-                <td id="reset_btn" onclick="clearPlaylist()">초기화</td>
-            </tr>
-            <tr>
-                <td id="prev_btn" onclick="prevVideo()">이전곡</td>
-                <td id="next_btn" onclick="nextVideo()">다음곡</td>
-
-            </tr>
-
-        </table>
-
         <table id="main">
             <thead>
                 <tr>
-                    <th id="order">순서</th>
+                    <th id="order">#</th>
                     <th id="music_title">음악 제목</th>
                     <th id="delete"></th>
                 </tr>
             </thead>
         </table>
-        <div id="player_view"></div>
     </div>
+        <div id="player">
+        </div>
+            <img id="play_button" src="img/play_button.png" onclick="play()">
+            <img id="next_button" src="img/next_button.png" onclick="nextVideo()">
+            <img id="prev_button" src="img/prev_button.png" onclick="prevVideo()">
+            <img id="sound_button" src="img/sound_button.png" onclick="mute()">
+            <img id="clear_button" src="img/clear_button.png" onclick="clearPlaylist()">
+            <div id="player_view"></div>
+            <div id="play_info"></div>
 </body>
 <script>
 

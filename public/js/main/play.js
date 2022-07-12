@@ -1,21 +1,34 @@
 let player = null;
 let playlist_id = [];
+let playlist_name = [];
 let arrayNum = 0;
 function play() {
-    onYouTubeIframeAPIReady();
-    function onYouTubeIframeAPIReady() {
-        if (playlist_id[arrayNum]) {
-            player = new YT.Player('player_view', {
-                height: '100%',
-                width: '100%',
-                videoId: playlist_id[arrayNum],
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            })
-        } else {
-            alert("곡이 없습니다.")
+    if(player != null){
+        player.pauseVideo();
+        $("#play_button").attr('src','img/play_button.png')
+        if(player.getPlayerState() == 2){
+            $("#play_button").attr('src','img/pause_button.png')
+            player.playVideo();
+        }
+    }else {
+        onYouTubeIframeAPIReady();
+        function onYouTubeIframeAPIReady() {
+            if (playlist_id[arrayNum]) {
+                    $("#play_button").attr('src','img/pause_button.png')
+                    player = new YT.Player('player_view', {
+                        height: '100%',
+                        width: '100%',
+                        videoId: playlist_id[arrayNum],
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }
+                    })
+                    $("#play_info").html(playlist_name[arrayNum])
+            } else {
+                $("#play_info").text("")
+                alert("곡이 없습니다.")
+            }
         }
     }
 }
@@ -49,6 +62,8 @@ function prevVideo() {
 function clearPlaylist() {
     playerDestroy();
     playlist_id = [];
+    playlist_name = [];
+    $("#play_info").text("")
     arrayNum = 0;
     $('#main tr:not(:first)').remove();
     order_number = 0;
@@ -67,7 +82,17 @@ function deleteList(i) {
     playlist_id = playlist_id.filter((item) => {
         return item != null;
     })
-    if (player !== null && i <= arrayNum) {
+    if (player != null && i <= arrayNum) {
         arrayNum--;
+    }
+}
+
+function mute() {
+    if(player.isMuted()) {
+        player.unMute()
+        $("#sound_button").attr('src', 'img/sound_button.png')
+    }else {
+        player.mute()
+        $("#sound_button").attr('src', 'img/mute_button.png')
     }
 }

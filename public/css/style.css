@@ -1,27 +1,39 @@
+@font-face {
+    font-family: 'MaplestoryOTFLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
     margin: 5px auto;
+    font-family: 'MaplestoryOTFLight';
 }
-
+#info {
+    margin-top: 20px;
+    margin-left: 68%;
+    
+}
+#logout {
+    margin-left: 10px;
+}
+#wrap {
+    width: 70%;
+    margin-top: 40px;
+    border: 5px solid black;
+    border-radius: 4%;
+}
 h1 {
-    margin-left: 100px;
+    width: 70%;
+    margin-top: 30px;
+    margin-left: 15%;
+    margin-bottom: 40px;
+
 }
 
 #search_view {
     width: 60%;
-    /* height: 350px; */
     padding: 20px;
-    background-color: blanchedalmond;
-}
-
-#control {
-    position: fixed;
-    bottom: 50%;
-    left: 1%;
-}
-
-#control tr {
-    background-color: pink;
-    cursor: pointer;
+    background-color: #A6B8C4;
 }
 
 td {
@@ -32,22 +44,25 @@ td {
 }
 
 #search_area {
-    width: 65%;
-    height: 25px;
+    width: 70%;
+    height: 50px;
     display: block;
     margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 5px solid black;
 }
 
+#search_button {
+    position: absolute;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
 #search_bar {
     width: 90%;
-    height: 100%;
+    height: 80%;
 }
-
-#search_btn {
-    width: 7%;
-    height: 130%;
-}
-
 #main {
     width: 65%;
     height: 45px;
@@ -55,11 +70,12 @@ td {
 }
 
 #main thead {
-    background-color: bisque;
+    background-color: #A6B8C4;
     text-align: center;
     font-weight: bolder;
     padding: 5px 10px;
 }
+
 #main th {
     height: 40px;
 }
@@ -87,11 +103,48 @@ td {
     font-size: 50px;
 }
 
-#player_view {
-    margin: 0;
+#play_button, #prev_button, #next_button, #sound_button, #clear_button {
     position: fixed;
-    left: 1%;
-    width: 300px;
-    height: 200px;
-    bottom: 0;
+    width: 50px;
+    height: 50px;
+    bottom: 3%;
+}
+#prev_button {
+    margin-left: 3%;
+}
+#next_button {
+    margin-left: 17%;
+}
+#play_button {
+    margin-left: 10%;
+}
+#sound_button {
+    margin-left: 80%;
+}
+#clear_button {
+    margin-left: 88%;
+}
+#player_view {
+    position: fixed;
+    margin-left: 27%;
+    width: 100px;
+    height: 80px;
+    bottom: 0.8%;
+}
+#play_info {
+    position: fixed;
+    width: 35%;
+    height: 50px;
+    margin-left: 40%;
+    bottom: 1.5%;
+    padding: 10px;
+    font-size: 20px;
+}
+#player {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    opacity: 0.5;
+    bottom: 0px;
 }

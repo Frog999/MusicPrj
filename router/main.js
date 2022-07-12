@@ -6,7 +6,7 @@ const path = require('path')
 router.get('/',(req,res) => {
     console.log('main', req.user)
     if(!req.user) res.redirect('/')
-    else res.render('main')
+    else res.render('main', {'user': req.user})
 })
 
 module.exports = router;

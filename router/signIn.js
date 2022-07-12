@@ -16,9 +16,6 @@ const connection = mariadb.createConnection({
 connection.connect();
 
 router.get('/', (req, res) => {
-    // let msg
-    // let errMsg = req.flash('error')
-    // if (errMsg) msg = errMsg
     if (req.user) res.redirect('/main')
     else {
         console.log('index Page loaded')

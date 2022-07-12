@@ -8,7 +8,7 @@ function search() {
     const maxResults = "5";
 
     //API키
-    
+    const key = "AIzaSyBuQao-t5oB8AMJ1y7K5pvj5CSRUIM-VtE";
 
     //검색 URL
     let targetUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=" + order
@@ -47,10 +47,11 @@ function search() {
                         order_number++;
                         order_cell.innerText = order_number;
                         $(music_title_cell).append(jdata.items[i].snippet.title);
-                        $(del_btn_cell).append('<img src = "delete.png" class = "delete_img" onclick = "deleteList(' + order_number + ')">')
+                        $(del_btn_cell).append('<img src = "img/delete.png" class = "delete_img" onclick = "deleteList(' + order_number + ')">')
 
                         //플레이리스트 배열에 비디오ID 추가
                         playlist_id.push(jdata.items[i].id.videoId);
+                        playlist_name.push(jdata.items[i].snippet.title);
                     }
                 }
                 )

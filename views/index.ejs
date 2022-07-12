@@ -7,35 +7,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogIn</title>
     <style>
-        * {
-            text-align: center;
-            vertical-align: middle;
+        @font-face {
+            font-family: 'MaplestoryOTFLight';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
-        div{
+
+        * {
+            font-family: 'MaplestoryOTFLight';
+        }
+        input {
+            margin-bottom: 10px;
+        }
+
+        #main {
+            margin-left: 28%;
+            margin-top: 15%;
             display: inline-block;
             width: 300px;
-            height: 100px;
+            height: 200px;
             padding: 50px;
-            border: 3px solid red;
+            border: 4px solid black;
+            border-radius: 4%;
+        }
+        #result {
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
-    <div>
-        Sign In<br>
-        ID<input type="text" id="id" name="id"><br>
-        PASSWORD<input type="text" id="password" name="password">
-        <button id="signIn">SignIn</button><br><br>
+    <div id="main">
+        <h2>Sign In</h2><br>
+        ID: <input type="text" id="id" name="id"><br>
+        PWD: <input type="password" id="password" name="password"><br>
+        <button id="signIn">Sign In</button><br><br>
         <a href="/signup">Sign Up</a>
+        <div id="result"></div>
     </div>
-    <div id="result"></div>
 </body>
 <script>
     document.querySelector('#signIn').addEventListener('click', () => {
         let id = document.getElementById('id').value
         let password = document.getElementById('password').value
-        sendAjax('http://localhost:3005/', {'id': id, 'password': password})
+        sendAjax('http://localhost:3005/', { 'id': id, 'password': password })
 
     })
     function sendAjax(url, data) {
@@ -48,11 +64,12 @@
         xhr.addEventListener('load', () => {
             let result = JSON.parse(xhr.responseText)
             let resultDiv = document.querySelector('#result')
-            if(result.id) window.location.href="main"
+            if (result.id) window.location.href = "main"
             else resultDiv.innerHTML = result
 
         })
     }
 
 </script>
+
 </html>

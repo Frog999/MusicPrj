@@ -7,6 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/admin.js"></script>
     <style>
+        @font-face {
+            font-family: 'MaplestoryOTFLight';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            font-family: 'MaplestoryOTFLight';
+            vertical-align: middle;
+        }
+        #main {
+            margin-left: 50px;
+            margin-top: 50px;
+            width: 1210px;
+            padding-left: 15px;
+            padding-bottom: 50px;
+            border: 4px solid black;
+            border-radius: 4%;
+        }
+        table {
+            width: 1190px;
+        }
         table,
         tr {
             border: 2px solid black;
@@ -21,6 +44,7 @@
 </head>
 
 <body>
+    <div id="main">
     <h2>가입 승인 대기</h2>
     <table class="table TableBox">
         <tr>
@@ -50,8 +74,7 @@
             </tr>
             <% }) %>
     </table>
-    <div id="result"></div>
-    
+</div>
 </body>
 
 </html>
